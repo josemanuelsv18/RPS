@@ -1,9 +1,20 @@
 *{
     font-family: "Heebo", sans-serif;
 }
-body{
-    margin: 0;
-}
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+ }
+ 
+ body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
 header{
     background-color: #FFEA01;
 }
@@ -26,6 +37,7 @@ header > h1{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 .game > .win-lose{
     font-size: 36px;
@@ -71,10 +83,14 @@ header > h1{
     color: black;
     text-decoration: none;
     background-color: #FFEA01;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
 }
 .game > .control-section > .button-menu > .button:hover{
     background-color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 .game > .control-section > .button-menu >.button > img{
     border-bottom: 5px solid black;
@@ -84,7 +100,7 @@ header > h1{
 .game > .play-again{
     background-color: #FFEA01;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 5px solid black;
     color: black;
     text-decoration: none;
