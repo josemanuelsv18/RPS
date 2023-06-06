@@ -20,22 +20,28 @@
         <p class="record-item" id="Draw">Draws: 0</p>
     </div>
     <div class="game">
-        <div class="result">
+        <div class="win-lose">
             <p>here goes the result</p>
         </div>
-        <div id="bot">
-            <div class="election" id="">
-                <p>Here goes the bot election</p>
+        <div class="results">
+            <div class="election-card">
+                <div class="election" id="bot">
+                    <p>Here goes the bot election</p>
+                </div>
+                <p>Bot</p>
             </div>
+            <div class="election-card">
+                <div class="election" id="player">
+                    <p>here goes the player election</p>
+                </div>
+                <p>Player</p>
+            </div>  
         </div>
-        <div class="election" id="player">
-            <p>here goes the player election</p>
-        </div>
-        <div class="buttons">
-            <nav>
-                <a href="#"><img src="./img/rock.png" alt="Rock image">Rock</a>
-                <a href="#"><img src="./img/paper.png" alt="Paper image">Paper</a>
-                <a href="#"><img src="./img/scissors.png" alt="Scissor image">Scissor</a>
+        <div class="control-section">
+            <nav class="button-menu">
+                <a href="#" class="button"><img src="./img/rock.png" alt="Rock image">Rock</a>
+                <a href="#" class="button"><img src="./img/paper.png" alt="Paper image">Paper</a>
+                <a href="#" class="button"><img src="./img/scissors.png" alt="Scissor image">Scissor</a>
             </nav>
         </div>
         <a href="#" class="play-again">Play again</a>
