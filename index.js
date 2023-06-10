@@ -6,7 +6,6 @@ const scissor = document.getElementById("scissor");
 const gameDiv = document.getElementById("gameDiv");
 const bot = document.getElementById("bot");
 const player = document.getElementById("player");
-const gameResult = document.getElementById("gameResult");
 const playedGames = document.getElementById("playedGames");
 const wins = document.getElementById("wins");
 const loses = document.getElementById("loses");
@@ -22,8 +21,7 @@ var win_count = 0;
 var lose_count = 0;
 var draw_count = 0;
 var counter = 0;
-const htmlGame = `<div class="win-lose">
-                <p id="gameResult"></p>
+const htmlGame = `<div class="win-lose" id="resultDiv">
             </div>
             <div class="results">
                 <div class="election-card">
@@ -43,23 +41,21 @@ const htmlGame = `<div class="win-lose">
 rock.addEventListener("click", ()=>{playGame(rockCode)});
 paper.addEventListener("click", ()=>{playGame(paperCode)});
 scissor.addEventListener("click", ()=>{playGame(scissorCode)});
-//Funciones            
+//Funciones
+//play functions            
 function playRock() {
-    console.log("you played rock");
     gameHtml();
     selection=0;
     insertImg(selection, bpPlayer);
     return(selection);
 }
 function playPaper(){
-    console.log("you played paper");
     gameHtml();
     selection=1;
     insertImg(selection, bpPlayer);
     return(selection);
 }
 function playScissor(){
-    console.log("you played scissors");
     gameHtml();
     selection=2;
     insertImg(selection, bpPlayer);
@@ -68,45 +64,36 @@ function playScissor(){
 function playBot(){
     let bot_election;
     bot_election = Math.floor(Math.random()*3);
-    console.log(bot_election);
     insertImg(bot_election, bpBot);
     return(bot_election);
 }
+//game funcionality
 function checkResult(s,b){
     switch(s){
         case 0:
             if(b == 0){
-                console.log("draw");
                 draw();
             }else if(b == 1){
-                console.log("lose");
                 lose();
             }else{
-                console.log("win");
                 win();
             }
             break;
         case 1:
             if(b == 0){
-                console.log("win");
                 win();
             }else if(b == 1){
-                console.log("draw");
                 draw();
             }else{
-                console.log("lose");
                 lose();
             }
             break;
         case 2:
             if(b == 0){
-                console.log("lose");
                 lose();
             }else if(b == 1){
-                console.log("win");
                 win();
             }else{
-                console.log("draw");
                 draw();
             }
             break;
@@ -115,28 +102,10 @@ function checkResult(s,b){
             break;
     }
 }
-function win(){
-    let win_score;
-    win_count++
-    win_score = "Wins: " + win_count;
-    console.log(win_score);
-}
-function lose(){
-    let lose_score;
-    lose_count++;
-    lose_score = "Loses: " + lose_count;
-    console.log(lose_score);
-}
-function draw(){
-    let draw_score;
-    draw_count++
-    draw_score = "Draws: " + draw_count;
-    console.log(draw_score);
-}
 function playGame(s){
     let player_selection;
     let bot_selection;
-    let played_games_score;
+    //let played_games_score;
     if(s == 0){
         player_selection = playRock();
     }else if(s == 1){
@@ -146,9 +115,44 @@ function playGame(s){
     }
     bot_selection = playBot();
     checkResult(player_selection,bot_selection);
-    counter++;
+    count_played_game();
+}
+//display result functions
+function resultText(r){
+    const resultDiv = document.getElementById("resultDiv");
+    let texto = document.createElement("p");
+    texto.innerHTML = r;
+    resultDiv.insertAdjacentElement("afterbegin", texto);
+}
+function count_played_game(){
+    let played_games_score;
+    counter++
     played_games_score = "Played Games: " + counter;
-    console.log(played_games_score);
+    playedGames.innerHTML = played_games_score;
+}
+function win(){
+    let win_score;
+    let win_message = "You Won!";
+    win_count++
+    win_score = "Wins: " + win_count;
+    resultText(win_message);
+    wins.innerHTML = win_score;
+}
+function lose(){
+    let lose_score;
+    let lose_message = "You Lost :(";
+    lose_count++;
+    lose_score = "Loses: " + lose_count;
+    resultText(lose_message);
+    loses.innerHTML = lose_score;
+}
+function draw(){
+    let draw_score;
+    let draw_message = "It's a draw.";
+    draw_count++
+    draw_score = "Draws: " + draw_count;
+    resultText(draw_message);
+    draws.innerHTML = draw_score;
 }
 function gameHtml(){
     gameDiv.innerHTML= htmlGame;
@@ -180,4 +184,3 @@ function insertImg(s,bp){
             break;
     }
 }
-//body
