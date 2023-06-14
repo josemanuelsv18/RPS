@@ -10,11 +10,13 @@ const playedGames = document.getElementById("playedGames");
 const wins = document.getElementById("wins");
 const loses = document.getElementById("loses");
 const draws = document.getElementById("draws");
+const again = document.getElementById("again");
 const bpBot = 0;
 const bpPlayer = 1;
 const rockCode = 0;
 const paperCode = 1;
 const scissorCode = 2;
+var play = true;
 var selection;
 var b;
 var win_count = 0;
@@ -41,6 +43,7 @@ const htmlGame = `<div class="win-lose" id="resultDiv">
 rock.addEventListener("click", ()=>{playGame(rockCode)});
 paper.addEventListener("click", ()=>{playGame(paperCode)});
 scissor.addEventListener("click", ()=>{playGame(scissorCode)});
+again.addEventListener("click" , playAgain);
 //Funciones
 //play functions            
 function playRock() {
@@ -103,19 +106,25 @@ function checkResult(s,b){
     }
 }
 function playGame(s){
-    let player_selection;
-    let bot_selection;
-    //let played_games_score;
-    if(s == 0){
-        player_selection = playRock();
-    }else if(s == 1){
-        player_selection = playPaper();
-    }else{
-        player_selection = playScissor();
+    while(play == true){
+        let player_selection;
+        let bot_selection;
+        if(s == 0){
+            player_selection = playRock();
+        }else if(s == 1){
+            player_selection = playPaper();
+        }else{
+            player_selection = playScissor();
     }
-    bot_selection = playBot();
-    checkResult(player_selection,bot_selection);
-    count_played_game();
+        bot_selection = playBot();
+        checkResult(player_selection,bot_selection);
+        count_played_game();
+        play = false;  
+    }
+}
+function playAgain(){
+    gameDiv.innerHTML = ""
+    play = true;
 }
 //display result functions
 function resultText(r){
